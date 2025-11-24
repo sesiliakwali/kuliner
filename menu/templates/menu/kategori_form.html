@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html><head><title>Form Kategori</title></head>
+<body>
+    <h1>Form Kategori Menu</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Simpan</button>
+    </form>
+</body>
+</html>

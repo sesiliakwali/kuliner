@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Kategori Menu</title></head>
+<body>
+    <h1>Kategori Menu</h1>
+    <a href="{% url 'kategori-tambah' %}">Tambah Kategori</a> | 
+    <a href="{% url 'menu-list' %}">Lihat Semua Menu</a> | 
+    <a href="{% url 'api-root' %}">Lihat API</a>
+    <hr>
+    <ul>
+        {% for kat in kategori_list %}
+            <li><a href="{% url 'kategori-detail' kat.pk %}">{{ kat.nama_kategori }}</a></li>
+        {% empty %}
+            <li>Belum ada kategori.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

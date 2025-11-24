@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daftar Semua Menu</title>
+</head>
+<body>
+    <h1>Daftar Semua Menu</h1>
+    <a href="{% url 'menu-tambah' %}">Tambah Menu Baru</a> | 
+    <a href="{% url 'kategori-list' %}">Kembali ke Daftar Kategori</a>
+    <hr>
+    <ul>
+        {# 'menu_list' berasal dari context_object_name di MenuListView #}
+        {% for menu in menu_list %}
+            <li>
+                <strong>{{ menu.nama_item }}</strong> (Kategori: {{ menu.kategori.nama_kategori }})
+                <p>Harga: Rp {{ menu.harga }} | Status: {{ menu.get_status_ketersediaan_display }}</p>
+            </li>
+             <hr>
+        {% empty %}
+            <li>Belum ada data menu sama sekali.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head><title>Detail: {{ kategori.nama_kategori }}</title></head>
+<body>
+    <h1>{{ kategori.nama_kategori }}</h1>
+    <a href="{% url 'kategori-edit' kategori.pk %}">Edit</a> | 
+    <a href="{% url 'kategori-hapus' kategori.pk %}">Hapus</a>
+    <p>{{ kategori.deskripsi }}</p>
+    <hr>
+
+    <h2>Daftar Menu:</h2>
+    <ul>
+        {# Loop 1: Menampilkan semua Menu (anak) dari Kategori ini #}
+        {% for item in kategori.menu_items.all %}
+            <li>
+                <strong>{{ item.nama_item }}</strong> (Rp {{ item.harga }})
+                <p>Status: {{ item.get_status_ketersediaan_display }}</p>
+
+                <a href="{% url 'review-tambah' item.pk %}" style="font-size: 0.9em;">[+ Beri Review]</a>
+
+                <div style="margin-left: 25px; border-left: 2px solid #eee; padding-left: 10px;">
+                    <strong>Reviews:</strong>
+                    <ul>
+                        {% for review in item.reviews.all %}
+                            <li>
+                                <strong>{{ review.nama_pelanggan }}</strong> ({{ review.rating }}/5):
+                                "{{ review.komentar|default:"-" }}"
+                            </li>
+                        {% empty %}
+                            <li><i>(Belum ada review)</i></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </li>
+            <hr style="border: 0; border-top: 1px dashed #ccc;">
+        {% empty %}
+            <li>Belum ada menu di kategori ini.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'kategori-list' %}">Kembali ke Daftar Kategori</a>
+</body>
+</html>

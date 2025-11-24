@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html><head><title>Tambah Review</title></head>
+<body>
+    <h1>Beri Review</h1>
+    <p>Anda sedang memberi review untuk... (Bisa ditambahkan nama menunya di sini)</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Simpan Review</button>
+    </form>
+</body>
+</html>

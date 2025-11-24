@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Menu</title>
+</head>
+<body>
+    <h1>Form Menu Makanan/Minuman</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <p>Isi data menu baru di bawah ini:</p>
+        {{ form.as_p }}
+        
+        <button type="submit">Simpan Menu</button>
+    </form>
+    <br>
+    <a href="{% url 'menu-list' %}">Batal dan Kembali ke Daftar Menu</a>
+</body>
+</html>
